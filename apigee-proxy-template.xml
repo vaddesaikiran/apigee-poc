@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description>Private Backend Proxy - Internal Only</Description>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>Verify-Apigee-Service-Account</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="Call-Private-Function">
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/function")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1/private-backend</BasePath>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="RouteToPrivateFunction">
+        <TargetEndpoint>private-function-target</TargetEndpoint>
+        <Condition>(proxy.pathsuffix MatchesPath "/function")</Condition>
+    </RouteRule>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+</ProxyEndpoint>
+

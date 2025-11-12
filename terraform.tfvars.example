@@ -1,0 +1,52 @@
+# GCP Project Configuration
+project_id = "your-gcp-project-id"
+region     = "asia-south1"
+
+# VPC Configuration
+vpc_name   = "private-backend-vpc"
+subnet_name = "private-backend-subnet"
+subnet_cidr = "10.0.0.0/24"
+
+# VPC Connector Configuration
+vpc_connector_name        = "private-backend-connector"
+vpc_connector_cidr        = "10.8.0.0/28"
+vpc_connector_min_instances = 2
+vpc_connector_max_instances = 3
+
+# Cloud Function Configuration
+cloud_function_name        = "private-backend-function"
+cloud_function_runtime     = "python311"
+cloud_function_entry_point = "hello_world"
+cloud_function_memory      = "256Mi"
+cloud_function_timeout     = 60
+cloud_function_min_instances = 0
+cloud_function_max_instances = 10
+
+# Cloud Function Source (leave empty to use placeholder)
+# cloud_function_source_path = "/path/to/your/function-source.zip"
+
+# Environment variables for Cloud Function
+cloud_function_env_vars = {
+  # ENV_VAR_1 = "value1"
+  # ENV_VAR_2 = "value2"
+}
+
+# Apigee Configuration
+# Option 1: Provide an existing Apigee service account email
+# apigee_service_account_email = "apigee-sa@your-project.iam.gserviceaccount.com"
+
+# Option 2: Let Terraform create a new service account (default)
+create_apigee_service_account = true
+apigee_service_account_name    = "apigee-invoker-sa"
+# apigee_service_account_email = ""  # Leave empty to create new SA
+
+# Private DNS Configuration
+enable_private_dns     = true
+private_dns_zone_name  = "internal-zone"
+private_dns_domain     = "internal.mystore."
+cloud_function_dns_name = "api"
+
+# Optional: Apigee Organization (if creating Apigee resources)
+# apigee_org_id = "your-org-id"
+# apigee_env_name = "prod"
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="private-function-target">
+    <Description>Target endpoint for private Cloud Function</Description>
+    <FaultRules/>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <URL>https://CLOUD_FUNCTION_HOSTNAME/hello_world</URL>
+        <!-- 
+        Replace CLOUD_FUNCTION_HOSTNAME with the actual hostname from Terraform output
+        Example: private-backend-function-abc123-uc.a.run.app
+        Or use the private DNS name if configured: api.internal.mystore
+        -->
+    </HTTPTargetConnection>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+</TargetEndpoint>
+
